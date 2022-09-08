@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody allPlatformsRb;
     [SerializeField] private int score = 0;
 
     private List<Vector3> allPlatformsPos = new List<Vector3>() { Vector3.zero };
@@ -26,7 +25,7 @@ public class TowerController : MonoBehaviour
     {
         Vector3 lastPos = allPlatformsPos[allPlatformsPos.Count - 2]; // на этом моменте новая платформа уже в листе
 
-        if (ComparingPlatfromPositions(lastPos, addedPos))
+        if (ComparePlatfromPositions(lastPos, addedPos))
         {
             score++;
             //Debug.Log("They matched!!!");
@@ -37,7 +36,7 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    private bool ComparingPlatfromPositions(Vector3 pos1, Vector3 pos2)
+    private bool ComparePlatfromPositions(Vector3 pos1, Vector3 pos2)
     {
         return CalculateDifferenceBetweenPositions(pos1, pos2) <= 0.001;
     }
